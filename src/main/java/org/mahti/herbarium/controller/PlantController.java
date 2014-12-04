@@ -65,7 +65,7 @@ public class PlantController {
 
 			User owner = userRepository.findOne(userId);
             Plant plant = new Plant();
-            plant.setOwner(owner);
+            //plant.setOwner(owner);
             plant.setContent(file.getBytes());
 			plant.setBinomialNomenclature("binomialNomenclature");
 			plant.setName("name");

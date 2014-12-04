@@ -44,7 +44,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public String view(@PathVariable String username, Model model) {
         User user = userRepository.findByUsername(username);
         model.addAttribute("username", user.getUsername());
