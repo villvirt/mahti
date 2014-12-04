@@ -24,6 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/static/**").permitAll()
+                .antMatchers("/plants").permitAll()  // just for testing purpose
 		.antMatchers("/signup").anonymous()
 		.antMatchers("/users").anonymous()
                 .anyRequest().authenticated();

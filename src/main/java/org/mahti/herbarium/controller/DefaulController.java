@@ -46,7 +46,8 @@ public class DefaulController {
 
     @RequestMapping(value ="upload",method = RequestMethod.GET)
     public String upload(Model model) {
+		model.addAttribute("userId", userService.getAuthenticatedUser().getId());
         return "upload";
     }
-    
+
 }

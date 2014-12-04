@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:include="fragment/common :: headerFragment" />
+
+    <body>
+
+        <div th:include="fragment/common :: navFragment" />
+
+        <!-- Page Content -->
+        <div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">Friendly name of the plant</div>
+						<div class="panel-body">
+							<img class="img-responsive" src="http://placehold.it/850x450" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">Control panel</div>
+								<div class="panel-body">
+									<p>Here we have some control over the plant we own. We can delete or update the fields, set if we want help in identifying.</p>
+									<p>Only display this if user is owner of this plant</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">Some facts about this plant</div>
+								<div class="panel-body">
+									<p>Everyone can see this, if the plant owner has set it to be public.</p>
+									<p>Probably we put some tables here.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <!-- Pagination -->
+			<!-- might need these 
+            <div class="row text-center">
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#">&laquo;</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+			-->
+            <!-- /.row -->
+
+            <footer th:include="fragment/common :: footerFragment" />
+
+        </div>
+        <!-- /.container -->
+
+        <div th:include="fragment/common :: dialogFragment" />
+        <div th:include="fragment/common :: scriptFragment" />
+
+
+    </body>
+
+</html>
