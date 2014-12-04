@@ -1,7 +1,10 @@
 package org.mahti.herbarium.domain;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,6 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Entity
+@Table(name = "users")
 public class User extends AbstractPersistable<Long>{
 
     @NotBlank
@@ -32,6 +36,17 @@ public class User extends AbstractPersistable<Long>{
     
     @Length(max = 255)
     private String description;
+
+	@OneToMany(mappedBy = "owner")
+	private List<Plant> plants;
+
+	public List<Plant> getPlants() {
+		return plants;
+	}
+
+	public void setPlants(List<Plant> plants) {
+		this.plants = plants;
+	}
 
     public String getUsername() {
         return username;
