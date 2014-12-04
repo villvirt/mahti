@@ -28,9 +28,8 @@
 
                     <h2 class="page-header">Add new content</h2>
 
-                    <form method="POST" th:action="@{/plants/{id}(id=${userId})}" enctype="multipart/form-data">
+                    <form method="POST" th:action="@{/plants/upload/{id}(id=${userId})}" enctype="multipart/form-data">
                         <input type="file" name="file" id="file" />
-                        <input type="text" name="username" id="username" />
                         <input type="submit" value="Moarr!" />
                     </form>
                 </div>

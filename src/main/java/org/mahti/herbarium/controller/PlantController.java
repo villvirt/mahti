@@ -7,6 +7,7 @@ import org.mahti.herbarium.repository.PlantRepository;
 import org.mahti.herbarium.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,7 @@ public class PlantController {
         return plantRepository.findOne(id).getContent();
     }
 
+    @Transactional
     @RequestMapping(value = "/upload/{userId}", method = RequestMethod.POST)
     public String postImage(
 			@RequestParam("file") MultipartFile file
@@ -61,16 +63,17 @@ public class PlantController {
                 || file.getContentType().equals("image/jpg")
                 || file.getContentType().equals("image/jpeg")) {
 
-            Plant plant = new Plant();
-            plant.setContent(file.getBytes());
-			plant.setBinomialNomenclature("nothing");
-			plant.setName("nothing");
-			plant.setFamily("nothing");
 			User owner = userRepository.findOne(userId);
+            Plant plant = new Plant();
             plant.setOwner(owner);
+            plant.setContent(file.getBytes());
+			plant.setBinomialNomenclature("binomialNomenclature");
+			plant.setName("name");
+			plant.setFamily("family");
+            plant.setIdentified(false);
 			plant = plantRepository.save(plant);
-
 			owner.getPlants().add(plant);
+
         }
         return "redirect:/user";
     }
