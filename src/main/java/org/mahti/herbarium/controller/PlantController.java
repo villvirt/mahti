@@ -2,7 +2,9 @@ package org.mahti.herbarium.controller;
 
 import java.io.IOException;
 import org.mahti.herbarium.domain.Plant;
+import org.mahti.herbarium.domain.User;
 import org.mahti.herbarium.repository.PlantRepository;
+import org.mahti.herbarium.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,12 @@ public class PlantController {
     @Autowired
     private PlantRepository plantRepository;
 
+	@Autowired
+	private UserRepository userRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public String redirect() {
-        return "redirect:/";
+        return "plant";  // just for testing purpose
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -46,16 +51,26 @@ public class PlantController {
         return plantRepository.findOne(id).getContent();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String postImage(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) throws IOException {
+    @RequestMapping(value = "/upload/{userId}", method = RequestMethod.POST)
+    public String postImage(
+			@RequestParam("file") MultipartFile file
+			, @PathVariable("userId") Long userId) throws IOException 
+	{
         if (file.getContentType().equals("image/gif")
                 || file.getContentType().equals("image/png")
                 || file.getContentType().equals("image/jpg")
                 || file.getContentType().equals("image/jpeg")) {
+
             Plant plant = new Plant();
             plant.setContent(file.getBytes());
-            plant.setUser(username);
-            plantRepository.save(plant);
+			plant.setBinomialNomenclature("nothing");
+			plant.setName("nothing");
+			plant.setFamily("nothing");
+			User owner = userRepository.findOne(userId);
+            plant.setOwner(owner);
+			plant = plantRepository.save(plant);
+
+			owner.getPlants().add(plant);
         }
         return "redirect:/user";
     }

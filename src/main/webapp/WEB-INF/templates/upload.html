@@ -11,7 +11,7 @@
         <div class="container">
             
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <h2 class="page-header">Your current images: (<span th:text="${count}">count</span> images)</h2>
 
                     <div th:if="${current != null}">
@@ -28,14 +28,24 @@
 
                     <h2 class="page-header">Add new content</h2>
 
-                    <form method="POST" action="/plants" enctype="multipart/form-data">
-                        <input type="file" name="file" id="file"/>
-                        <input type="submit" value="Moarr!"/>
+                    <form method="POST" th:action="@{/plants/{id}(id=${userId})}" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file" />
+                        <input type="text" name="username" id="username" />
+                        <input type="submit" value="Moarr!" />
                     </form>
                 </div>
             </div>
 
             <hr />
+
+			<div class="row">
+				<div class="col-md-12">
+                    <h2 class="page-header">Your current images</h2>
+					<!-- <li th:each="person : ${persons}" th:text="${persons.name}">Jack Bauer</li> -->
+					<img th:src="@{/plants/{id}/content(id=${current})}" />
+				</div>
+				<div class="col-md-3"></div>
+			</div>
 
             <footer th:include="fragment/common :: footerFragment" />
 

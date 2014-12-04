@@ -49,8 +49,11 @@ public class UserController {
         User user = userRepository.findByUsername(username);
         model.addAttribute("username", user.getUsername());
         model.addAttribute("name", user.getName());
-        model.addAttribute("plants", plantRepository.findByUsername(username));
+        model.addAttribute("plants", plantRepository.findByOwner(username));
         return "user";
     }
+
+	// @RequestMapping(value = "{userId}/plants", method = RequestMethod.GET)
+	// publi String viewAllPlantsFromUser(@PathVariable Long userId)
 
 }
