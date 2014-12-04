@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:include="fragment/common :: headerFragment" />
+
+    <body>
+
+        <div th:include="fragment/common :: navFragment" />
+
+        <!-- Page Content -->
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">Your current images: (<span th:text="${count}">count</span> images)</h2>
+
+                    <div th:if="${current != null}">
+                        <img th:src="@{/plants/{id}/content(id=${current})}"/>
+                    </div>
+
+                    <div th:if="${previous != null}">
+                        <a th:href="@{/plants/{id}(id=${previous})}">Previous</a>
+                    </div>
+
+                    <div th:if="${next != null}">
+                        <a th:href="@{/plants/{id}(id=${next})}">Next</a>
+                    </div>
+
+                    <h2 class="page-header">Add new content</h2>
+
+                    <form method="POST" th:action="@{/plants/upload/{id}(id=${userId})}" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file" />
+                        <input type="submit" value="Moarr!" />
+                    </form>
+                </div>
+            </div>
+
+            <hr />
+
+			<div class="row">
+				<div class="col-md-12">
+                    <h2 class="page-header">Your current images</h2>
+					<!-- <li th:each="person : ${persons}" th:text="${persons.name}">Jack Bauer</li> -->
+					<img th:src="@{/plants/{id}/content(id=${current})}" />
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+            <footer th:include="fragment/common :: footerFragment" />
+
+        </div>
+        <!-- /.container -->
+
+        <div th:include="fragment/common :: dialogFragment" />
+        <div th:include="fragment/common :: scriptFragment" />
+
+    </body>
+
+</html>

@@ -9,43 +9,44 @@
 
         <!-- Page Content -->
         <div class="container">
-            
+
+            <!-- Page Heading -->
             <div class="row">
-                <div class="col-md-12">
-                    <h2 class="page-header">Your current images: (<span th:text="${count}">count</span> images)</h2>
+                <div class="col-lg-12">
+                    <h1 class="page-header" th:text="${username}">Username</h1>
+                    <small th:text="${name}">Name</small>
+                </div>
+            </div>
+            <!-- /.row -->
+            <h2 class="page-header">Pictures</h2>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div th:if="${#lists.isEmpty(plants)}">No pictures yet</div>
+                        <div th:each="plant : ${plants}">
+                            <div class="col-md-3 portfolio-item">
+                                <a th:href="@{/plants/{id}(id=${plant.id})}">
+                                    <img style="height:auto; width:auto; max-width:200px; max-height:100px;" th:src="@{/plants/{id}/content(id=${plant.id})}"/>
+                                </a>
+                            </div>
+                        </div>
 
-                    <div th:if="${current != null}">
-                        <img th:src="@{/plants/{id}/content(id=${current})}"/>
                     </div>
-
-                    <div th:if="${previous != null}">
-                        <a th:href="@{/plants/{id}(id=${previous})}">Previous</a>
-                    </div>
-
-                    <div th:if="${next != null}">
-                        <a th:href="@{/plants/{id}(id=${next})}">Next</a>
-                    </div>
-
+                </div>
+                <div>
                     <h2 class="page-header">Add new content</h2>
 
-                    <form method="POST" th:action="@{/plants/upload/{id}(id=${userId})}" enctype="multipart/form-data">
-                        <input type="file" name="file" id="file" />
-                        <input type="submit" value="Moarr!" />
+                    <form method="POST" action="/plants" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file"/>
+                        <input type="hidden" name="username" id="username" value="" th:attr="value=${username}"/>
+                        <input type="submit" value="Add"/>
                     </form>
                 </div>
             </div>
 
             <hr />
-
-			<div class="row">
-				<div class="col-md-12">
-                    <h2 class="page-header">Your current images</h2>
-					<!-- <li th:each="person : ${persons}" th:text="${persons.name}">Jack Bauer</li> -->
-					<img th:src="@{/plants/{id}/content(id=${current})}" />
-				</div>
-				<div class="col-md-3"></div>
-			</div>
-
+            
             <footer th:include="fragment/common :: footerFragment" />
 
         </div>

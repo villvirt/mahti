@@ -75,6 +75,6 @@ public class PlantController {
 			owner.getPlants().add(plant);
 
         }
-        return "redirect:/user";
+        return "redirect:/upload";
     }
 }

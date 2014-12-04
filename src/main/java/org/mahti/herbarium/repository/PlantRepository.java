@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlantRepository  extends JpaRepository<Plant, Long> {
 	
-     List<Plant> findByOwner(String owner);
+    public List<Plant> findByOwner(String owner);
     
 }
