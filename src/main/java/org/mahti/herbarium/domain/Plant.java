@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Plant extends AbstractPersistable<Long> {
 
-	// TODO
+    // TODO
     // fields: date, location (GPS: lat&long)
 
     private long correct;
