@@ -84,10 +84,11 @@ public class UserTest {
             plant.setName(plantName);
             userPlants.add(plant);
         }
-        
+        userRepository.save(user);
         user.setPlants(userPlants);
         plantRepository.save(userPlants);
-        userRepository.save(user);
+        plantRepository.flush();
+        userRepository.saveAndFlush(user);
 
         retrieved = userRepository.findByUsername(USER_USERNAME);
         List<Plant> retrievedPlants = retrieved.getPlants();
