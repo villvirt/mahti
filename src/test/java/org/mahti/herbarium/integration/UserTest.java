@@ -102,6 +102,9 @@ public class UserTest {
         userRepository.deleteAll();
         plantRepository.deleteAll();
         
+        userRepository.flush();
+        plantRepository.flush();
+        
     }
     
 }
