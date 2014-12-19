@@ -28,6 +28,7 @@ public class PlantTest {
 
     @Test
     public void sizeOfRepository() throws Exception {
+        plantRepository.deleteAll();
         assertEquals("Repository size in the beginning.", 0, plantRepository.count());
 
         addPlantDaisy();

@@ -2,6 +2,7 @@ package org.mahti.herbarium.integration;
 
 import java.util.Arrays;
 import java.util.List;
+import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +46,7 @@ public class PlantServiceTest {
             "Rairuoho"};
     
     @Test
+    @Transactional
     public void testAddComment(){
         
         Plant plant = new Plant();
