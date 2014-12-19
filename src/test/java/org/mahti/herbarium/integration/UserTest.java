@@ -3,7 +3,8 @@ package org.mahti.herbarium.integration;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import javax.transaction.Transactional;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -67,7 +68,6 @@ public class UserTest {
     }
     
     @Test
-    @Transactional
     public void testUserPlants(){
         
         User retrieved = userRepository.findByUsername(USER_USERNAME);
@@ -92,6 +92,7 @@ public class UserTest {
         userRepository.saveAndFlush(user);
 
         retrieved = userRepository.findByUsername(USER_USERNAME);
+        Hibernate.initialize(retrieved.getPlants());
         List<Plant> retrievedPlants = retrieved.getPlants();
         
         assertEquals(PLANTNAMES.length, retrievedPlants.size());
