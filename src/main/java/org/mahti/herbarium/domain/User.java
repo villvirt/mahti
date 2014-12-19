@@ -36,7 +36,6 @@ public class User extends AbstractPersistable<Long>{
     @Length(max = 255)
     private String description;
 
-    @OneToMany (fetch = FetchType.EAGER)
     private List<Plant> plants;
 
 

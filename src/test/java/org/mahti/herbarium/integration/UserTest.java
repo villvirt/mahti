@@ -63,8 +63,8 @@ public class UserTest {
         assertEquals(USER_DESCRIPTION, retrieved.getDescription());
         assertEquals(USER_EMAIL, retrieved.getEmail());
         
-        userRepository.deleteAllInBatch();
-        userRepository.flush();
+        userRepository.delete(user);
+        
     }
     
 }
