@@ -30,16 +30,11 @@ public class UserTest {
     @Autowired
     private UserRepository userRepository;
     
-    @Autowired
-    private PlantRepository plantRepository;
-    
     private static final String USER_NAME = "Hemuli Kasvitieteilijä";
     private static final String USER_USERNAME = "hemuli";
     private static final String USER_DESCRIPTION = "Viimeinkin se kasvi on minun!";
     private static final String USER_EMAIL = "hemuli@muumilaakso.com";
     private static final String USER_PASSWORD = "herbaario";
-    
-    private static final String[] PLANTNAMES = {"Voikukka","Leskenlehti"};
     
     @Test
     public void testSaveUser() {
