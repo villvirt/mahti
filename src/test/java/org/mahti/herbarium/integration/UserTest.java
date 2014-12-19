@@ -67,46 +67,4 @@ public class UserTest {
         userRepository.flush();
     }
     
-    @Test
-    public void testUserPlants(){
-        
-        User retrieved = userRepository.findByUsername(USER_USERNAME);
-        assertNull(retrieved);    
-        
-        User user = new User();
-        user.setName(USER_NAME);
-        user.setUsername(USER_USERNAME);
-        user.setEmail(USER_EMAIL);
-        user.setPassword(USER_PASSWORD);
-        
-        List<Plant> userPlants = new LinkedList();
-        for (String plantName : Arrays.asList(PLANTNAMES)){
-            Plant plant = new Plant();
-            plant.setName(plantName);
-            userPlants.add(plant);
-        }
-        userRepository.save(user);
-        user.setPlants(userPlants);
-        plantRepository.save(userPlants);
-        plantRepository.flush();
-        userRepository.saveAndFlush(user);
-
-        retrieved = userRepository.findByUsername(USER_USERNAME);
-        Hibernate.initialize(retrieved.getPlants());
-        List<Plant> retrievedPlants = retrieved.getPlants();
-        
-        assertEquals(PLANTNAMES.length, retrievedPlants.size());
-        
-        for (int i = 0; i < PLANTNAMES.length; i++){
-            assertEquals(PLANTNAMES[i], retrievedPlants.get(i).getName());
-        }
-        
-        userRepository.deleteAllInBatch();
-        plantRepository.deleteAllInBatch();
-        
-        userRepository.flush();
-        plantRepository.flush();
-        
-    }
-    
 }
