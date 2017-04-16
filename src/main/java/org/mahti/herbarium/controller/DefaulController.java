@@ -1,6 +1,5 @@
 package org.mahti.herbarium.controller;
 
-import org.mahti.herbarium.repository.PlantRepository;
 import org.mahti.herbarium.repository.UserRepository;
 import org.mahti.herbarium.service.DefaultService;
 import org.mahti.herbarium.service.PlantService;

@@ -1,12 +1,19 @@
 package org.mahti.herbarium.integration;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mahti.herbarium.Application;
+import org.mahti.herbarium.domain.Plant;
 import org.mahti.herbarium.domain.User;
+import org.mahti.herbarium.repository.PlantRepository;
 import org.mahti.herbarium.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -52,6 +59,7 @@ public class UserTest {
         assertEquals(USER_EMAIL, retrieved.getEmail());
         
         userRepository.delete(user);
+        
     }
     
 }
